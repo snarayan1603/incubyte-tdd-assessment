@@ -19,5 +19,17 @@ describe('StringCalculator', () => {
       // Assert
       expect(result).toBe(expected);
     });
+
+    test('should return the number for single number input', () => {
+      // Arrange
+      const input = '1';
+      const expected = 1;
+
+      // Act
+      const result = calculator.add(input);
+
+      // Assert
+      expect(result).toBe(expected);
+    });
   });
 });
