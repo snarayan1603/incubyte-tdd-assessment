@@ -43,5 +43,17 @@ describe('StringCalculator', () => {
       // Assert
       expect(result).toBe(expected);
     });
+
+    test('should return sum for multiple comma-separated numbers', () => {
+      // Arrange
+      const input = '1,2,3,4,5';
+      const expected = 15;
+
+      // Act
+      const result = calculator.add(input);
+
+      // Assert
+      expect(result).toBe(expected);
+    });
   });
 });

@@ -9,8 +9,14 @@ class StringCalculator {
       return parseInt(numbers);
     }
     
+    // Handle multiple comma-separated numbers
+    if (numbers.includes(',')) {
+      const numberArray = numbers.split(',').map(num => parseInt(num.trim()));
+      return numberArray.reduce((sum, num) => sum + num, 0);
+    }
+    
     // TODO: Handle other cases in future commits
-    throw new Error('Method not implemented for multiple numbers');
+    throw new Error('Method not implemented for newline delimiters');
   }
 }
 
