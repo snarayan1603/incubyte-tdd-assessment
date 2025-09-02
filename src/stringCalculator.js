@@ -18,13 +18,23 @@ class StringCalculator {
           .filter(num => num !== '')
           .map(num => parseInt(num));
         
+        // Check for negative numbers
+        const negativeNumbers = numberArray.filter(num => num < 0);
+        if (negativeNumbers.length > 0) {
+          throw new Error(`negative numbers not allowed [${negativeNumbers.join(', ')}]`);
+        }
+        
         return numberArray.reduce((sum, num) => sum + num, 0);
       }
     }
     
     // Handle single number (no delimiters)
     if (!numbers.includes(',') && !numbers.includes('\n')) {
-      return parseInt(numbers);
+      const num = parseInt(numbers);
+      if (num < 0) {
+        throw new Error(`negative numbers not allowed [${num}]`);
+      }
+      return num;
     }
     
     // Handle multiple numbers with mixed delimiters
@@ -41,8 +51,14 @@ class StringCalculator {
       }
     }
     
-    // Convert to integers and sum
+    // Convert to integers and check for negative numbers
     const numberArray = allNumbers.map(num => parseInt(num));
+    const negativeNumbers = numberArray.filter(num => num < 0);
+    
+    if (negativeNumbers.length > 0) {
+      throw new Error(`negative numbers not allowed [${negativeNumbers.join(', ')}]`);
+    }
+    
     return numberArray.reduce((sum, num) => sum + num, 0);
   }
 }

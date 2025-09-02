@@ -86,7 +86,17 @@ describe('StringCalculator', () => {
       const expectedError = 'negative numbers not allowed [-2]';
 
       // Act & Assert
-      expect(() => calculator.add(input)).toThrow(ValueError);
+      expect(() => calculator.add(input)).toThrow(Error);
+      expect(() => calculator.add(input)).toThrow(expectedError);
+    });
+
+    test('should throw exception for multiple negative numbers', () => {
+      // Arrange
+      const input = '1,-2,-3,4';
+      const expectedError = 'negative numbers not allowed [-2, -3]';
+
+      // Act & Assert
+      expect(() => calculator.add(input)).toThrow(Error);
       expect(() => calculator.add(input)).toThrow(expectedError);
     });
   });
