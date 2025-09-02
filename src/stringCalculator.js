@@ -4,6 +4,24 @@ class StringCalculator {
       return 0;
     }
     
+    // Check for custom delimiter
+    if (numbers.startsWith('//')) {
+      const delimiterEndIndex = numbers.indexOf('\n');
+      if (delimiterEndIndex !== -1) {
+        const customDelimiter = numbers.substring(2, delimiterEndIndex);
+        const numbersPart = numbers.substring(delimiterEndIndex + 1);
+        
+        // Split by custom delimiter and filter out empty strings
+        const numberArray = numbersPart
+          .split(customDelimiter)
+          .map(num => num.trim())
+          .filter(num => num !== '')
+          .map(num => parseInt(num));
+        
+        return numberArray.reduce((sum, num) => sum + num, 0);
+      }
+    }
+    
     // Handle single number (no delimiters)
     if (!numbers.includes(',') && !numbers.includes('\n')) {
       return parseInt(numbers);

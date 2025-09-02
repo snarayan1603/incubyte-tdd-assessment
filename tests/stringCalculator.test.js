@@ -79,5 +79,15 @@ describe('StringCalculator', () => {
       // Assert
       expect(result).toBe(expected);
     });
+
+    test('should throw exception for negative numbers', () => {
+      // Arrange
+      const input = '1,-2,3';
+      const expectedError = 'negative numbers not allowed [-2]';
+
+      // Act & Assert
+      expect(() => calculator.add(input)).toThrow(ValueError);
+      expect(() => calculator.add(input)).toThrow(expectedError);
+    });
   });
 });
