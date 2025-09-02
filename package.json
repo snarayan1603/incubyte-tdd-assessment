@@ -1,0 +1,34 @@
+{
+  "name": "incubyte-tdd-assessment",
+  "version": "1.0.0",
+  "description": "String Calculator TDD implementation for Incubyte Software Craftsmanship assessment",
+  "main": "src/stringCalculator.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "tdd",
+    "test-driven-development",
+    "string-calculator",
+    "kata",
+    "software-craftsmanship"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js"
+    ],
+    "coverageReporters": [
+      "text",
+      "html"
+    ]
+  }
+}
