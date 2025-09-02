@@ -9,23 +9,23 @@ class StringCalculator {
       return parseInt(numbers);
     }
     
-    // Handle multiple numbers with any delimiter
-    const delimiters = [',', '\n'];
-    let numberString = numbers;
+    // Handle multiple numbers with mixed delimiters
+    // First split by newlines, then by commas
+    const lines = numbers.split('\n');
+    const allNumbers = [];
     
-    // Split by any delimiter and filter out empty strings
-    for (const delimiter of delimiters) {
-      if (numberString.includes(delimiter)) {
-        const numberArray = numberString.split(delimiter)
-          .map(num => num.trim())
-          .filter(num => num !== '')
-          .map(num => parseInt(num));
-        return numberArray.reduce((sum, num) => sum + num, 0);
+    for (const line of lines) {
+      if (line.includes(',')) {
+        const commaNumbers = line.split(',').map(num => num.trim()).filter(num => num !== '');
+        allNumbers.push(...commaNumbers);
+      } else if (line.trim() !== '') {
+        allNumbers.push(line.trim());
       }
     }
     
-    // Fallback for single number
-    return parseInt(numbers);
+    // Convert to integers and sum
+    const numberArray = allNumbers.map(num => parseInt(num));
+    return numberArray.reduce((sum, num) => sum + num, 0);
   }
 }
 
