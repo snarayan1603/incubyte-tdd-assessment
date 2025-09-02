@@ -55,5 +55,17 @@ describe('StringCalculator', () => {
       // Assert
       expect(result).toBe(expected);
     });
+
+    test('should handle newlines between numbers', () => {
+      // Arrange
+      const input = '1\n2,3';
+      const expected = 6;
+
+      // Act
+      const result = calculator.add(input);
+
+      // Assert
+      expect(result).toBe(expected);
+    });
   });
 });

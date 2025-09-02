@@ -4,19 +4,28 @@ class StringCalculator {
       return 0;
     }
     
-    // Handle single number
+    // Handle single number (no delimiters)
     if (!numbers.includes(',') && !numbers.includes('\n')) {
       return parseInt(numbers);
     }
     
-    // Handle multiple comma-separated numbers
-    if (numbers.includes(',')) {
-      const numberArray = numbers.split(',').map(num => parseInt(num.trim()));
-      return numberArray.reduce((sum, num) => sum + num, 0);
+    // Handle multiple numbers with any delimiter
+    const delimiters = [',', '\n'];
+    let numberString = numbers;
+    
+    // Split by any delimiter and filter out empty strings
+    for (const delimiter of delimiters) {
+      if (numberString.includes(delimiter)) {
+        const numberArray = numberString.split(delimiter)
+          .map(num => num.trim())
+          .filter(num => num !== '')
+          .map(num => parseInt(num));
+        return numberArray.reduce((sum, num) => sum + num, 0);
+      }
     }
     
-    // TODO: Handle other cases in future commits
-    throw new Error('Method not implemented for newline delimiters');
+    // Fallback for single number
+    return parseInt(numbers);
   }
 }
 
